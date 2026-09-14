@@ -6,15 +6,22 @@
 </head>
 <body>
   <h2>Web Bluetooth 掃描測試</h2>
-  <button onclick="scanBLE()">搜尋裝置</button>
-  <div id="log"></div>
+  
+  <!-- 點擊後會用 iOS Scheme 開啟 Bluefy 並自動帶入網址 -->
+  <a href="bluefy://https://rsvp-arashi.github.io/ble-test/" 
+     style="display:inline-block; padding:10px 20px; background-color:#007AFF; color:white; text-decoration:none; border-radius:8px; margin-bottom:15px;">
+    點此用 Bluefy 開啟此頁面
+  </a>
+
+  <br><br>
+  <button onclick="scanBLE()" style="padding:10px 20px;">搜尋裝置</button>
+  <div id="log" style="margin-top:15px;"></div>
 
   <script>
     async function scanBLE() {
       const logDiv = document.getElementById('log');
       try {
         logDiv.innerText = '正在搜尋藍牙裝置...';
-        // 請求藍牙裝置（acceptAllDevices 需配合必要服務設定）
         const device = await navigator.bluetooth.requestDevice({
           acceptAllDevices: true
         });
